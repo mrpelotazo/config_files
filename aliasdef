@@ -1,0 +1,12 @@
+#!/bin/bash
+
+alias ll='ls -lh'
+alias la='ls -lah'
+alias rm='rm -v'
+alias cp='cp -v'
+alias mv='mv -v'
+alias rmr='rm -RvI'
+alias cpr='cp -Rv'
+alias ..='cd ..'
+alias ldir='ls -d */'
+alias lldir="ls -l | grep --color=never '^d'"
