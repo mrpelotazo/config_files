@@ -14,10 +14,10 @@ update_interval 1
 total_run_times 0
 
 # Create own window instead of using desktop (required in nautilus)
-    own_window yes
-    own_window_transparent yes
-    own_window_type desktop
-    own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window yes
+own_window_transparent yes
+own_window_type desktop
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 
 # Use double buffering (reduces flicker, may not work for everyone)
 double_buffer yes
@@ -78,39 +78,47 @@ use_spacer none
 TEXT
 SYSTEM ${hr 2}
 
-Host: ${alignr}${nodename}
-Kernel:  ${alignr}${kernel}
-CPU 0: ${cpu cpu0}% ${alignr}${cpubar 9,90 cpu0}
-CPU 1: ${cpu cpu1}% ${alignr}${cpubar 9,90 cpu1}
-RAM: $memperc% ${alignr}${membar 9,90}
-Uptime: ${alignr}${uptime}
-
-DATE ${hr 2}
-${alignc 20}${font Terminus:size=26}${time %H:%M}${font}
-${alignc}${time %a %d %b %Y}
+Host   ${alignr}${nodename}
+Kernel ${alignr}${kernel}
+Arch   ${alignr}${machine}
+Uptime ${alignr}${uptime}
 
 HD ${hr 2}
 
-Home:
-${fs_free /home}/${fs_size /home} ${alignr}${fs_bar 9,90 /home}
-Root:
-${fs_free /root}/${fs_size /root} ${alignr}${fs_bar 9,90 /root}
+Home ${fs_free /home}/${fs_size /home} ${alignr}${fs_bar 9,90 /home}
+Root ${fs_free /root}/${fs_size /root} ${alignr}${fs_bar 9,90 /root}
+
+CPU ${hr 2}
+
+CPU 0  ${alignr}${cpu cpu0}% ${alignr}${cpubar 9,90 cpu0}
+CPU 1  ${alignr}${cpu cpu1}% ${alignr}${cpubar 9,90 cpu1}
+CPU Temp ${alignr}${exec sensors | grep 'CPU Temperature' | awk '{print $3}'}°C
+
+RAM ${hr 2}
+
+Total ${alignr}${memmax}
+Used ${alignr}${mem}
+Cached ${alignr}${cached}
 
 NETWORK ${hr 2}
-${if_existing /proc/net/route wlan1}
-Up: ${upspeed wlan1}${alignr}${upspeedgraph wlan1 9,90 789E2D A7CC5C}
-Down: ${downspeed wlan1}${alignr}${downspeedgraph wlan1 9,90 789E2D A7CC5C}
-Upload: ${alignr}${totalup wlan1}
-Download: ${alignr}${totaldown wlan1}
-Signal: ${wireless_link_qual wlan1}% ${alignr}${wireless_link_bar 9,90 wlan1}
-${else}${if_existing /proc/net/route enp2s0}
-Dev: enp2s0
-Up: ${alignr}${upspeed enp2s0}
-Down: ${alignr}${downspeed enp2s0}
-Upload: ${alignr}${totalup enp2s0}
-Download: ${alignr}${totaldown enp2s0}${endif}
-${else}${if_existing /proc/net/route eth1}
-Up: ${upspeed eth1} kb/s ${alignr}${upspeedgraph eth1 9,90 789E2D A7CC5C}
-Down: ${downspeed eth1} kb/s ${alignr}${downspeedgraph eth1 9,90 789E2D A7CC5C}
-Upload: ${alignr}${totalup eth1}
-Download: ${alignr}${totaldown eth1}${endif}${else}${font PizzaDude Bullets:size=14}4${font}   Network Unavailable${endif}
+
+Dev      ${alignr}enp2s0
+IP       ${alignr}${addr enp2s0}
+Up       ${alignr}${upspeed enp2s0}
+Down     ${alignr}${downspeed enp2s0}
+Upload   ${alignr}${totalup enp2s0}
+Download ${alignr}${totaldown enp2s0}
+
+PROCESS ${hr 2}
+
+   NAME             CPU      MEM
+  ${top name 1}${alignc}${top cpu 1} ${alignr}${top mem_res 1}
+  ${top name 2}${alignc}${top cpu 2} ${alignr}${top mem_res 2}
+  ${top name 3}${alignc}${top cpu 3} ${alignr}${top mem_res 3}
+  ${top name 4}${alignc}${top cpu 4} ${alignr}${top mem_res 4}
+  ${top name 5}${alignc}${top cpu 5} ${alignr}${top mem_res 5}
+
+DATE ${hr 2}
+
+${alignc 20}${font Terminus:size=26}${time %H:%M}${font}
+${alignc}${time %a %d %b %Y}
