@@ -1,27 +1,8 @@
-####################################################################################
-#
-# Name        : promptdef
-# Description : Defines a nice color prompt for root and common users.
-#               The hostname has a red background to make it clear for users
-#               that they are loged into this machine.
-# 
-#               It uses the colorsdef file for handy color definitions if available
-#               or directly defined colors if not.
-#
-#               This file has to be sourced by the bashrc file to have the prompt
-#               definition working.
-#
-# Date        : 12.07.2013
-# Author      : Adrian Antonana <adrian.antonana@stzedn.de>
-#
-####################################################################################
-
-
 #!/bin/bash
 
-if [ -e "./colorsdef" ]; then
+if [ -e "/etc/colorsdef" ]; then
 
-        source ./colorsdef
+        source /etc/colorsdef
 
         if [[ ${EUID} == 0 ]] ; then
                 PS1="${debian_chroot:+($debian_chroot)}\[${BRED}\]\u\[${COLOR_OFF}\]@\[${ON_RED}\]\h\[${COLOR_OFF}\] [\[${BCYAN}\]\w\[${COLOR_OFF}\]] [\[${BPURPLE}\]\t\[${COLOR_OFF}\]]\n\$ "
