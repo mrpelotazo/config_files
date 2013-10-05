@@ -6,8 +6,8 @@
 # ID 1
 rounded = 0
 border_width = 0
-background_color = #000000 25
-border_color = #FFFFFF 63
+background_color = #000000 22
+border_color = #FFFFFF 60
 
 # ID 2
 rounded = 0
@@ -18,19 +18,19 @@ border_color = #FFFFFF 60
 # ID 3
 rounded = 0
 border_width = 0
-background_color = #FFFFFF 10
+background_color = #FFFFFF 7
 border_color = #FFFFFF 20
 
 # ID 4
 rounded = 0
 border_width = 0
-background_color = #000000 23
+background_color = #047BFF 13
 border_color = #FFFFFF 100
 
 # ID 5
 rounded = 0
 border_width = 0
-background_color = #FFFFFF 25
+background_color = #FFFFFF 22
 border_color = #FFFFFF 0
 
 # Panel
@@ -93,16 +93,15 @@ systray_icon_asb = 100 0 0
 
 # Clock
 time1_format = %H:%M
-time1_font = snap 8
-time2_format = %A, %d %B %Y
-time2_font = snap 8
+time1_font = DejaVu Sans Mono 14
 clock_font_color = #FFFFFF 100
+clock_tooltip = %A, %d %B %Y
 clock_padding = 2 2
 clock_background_id = 0
 clock_lclick_command = gsimplecal
 
 # Tooltips
-tooltip = 0
+tooltip = 1
 tooltip_padding = 0 0
 tooltip_show_timeout = 0
 tooltip_hide_timeout = 0
