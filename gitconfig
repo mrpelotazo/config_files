@@ -1,0 +1,2 @@
+[alias]
+	lor = log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Cgreen(%cr) %Creset: %s' --graph
